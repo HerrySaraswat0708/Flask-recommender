@@ -2,7 +2,7 @@ FROM python:3.11.0
 
 RUN pip install Flask gunicorn
 
-COPY src/app/
+COPY server/src/ app/
 
 WORKDIR /app
 
