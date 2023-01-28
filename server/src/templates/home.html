@@ -1,0 +1,520 @@
+{% extends "layout.html" %} {% block body %}
+<!-- <div style="
+position: relative;
+text-align: center;
+width: 100%;
+height:fit-content;
+margin: auto;"> -->
+<!-- <div  style="
+        position: relative;
+        background-image: url(./static/bg1.jpg);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100%;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        margin-top: -6%;">
+       <h1 style="    font-size: 60px;
+       position: relative;
+       color: rgb(243, 240, 240);
+       margin-top: -2%;
+       margin-left: 0%;text-align: center;">Movie Recommender</h1>
+    </div> -->
+
+<div
+  class=""
+  style="
+    position: relative;
+    height: fit-content;
+    width: 100%;
+    /* background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%; */
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 60px;
+      position: relative;
+      color: rgb(7, 0, 0);
+      margin-top: 0%;
+      margin-left: 0%;
+      text-align: center;
+    "
+  >
+    Movie Recommender
+  </h1>
+  <h5
+    class="my-3"
+    style="
+      color: rgb(2, 2, 2);
+      margin-left: 0%;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    "
+  >
+    Select movie from the list below
+  </h5>
+  <form
+    action="/"
+    method="post"
+    style="width: auto; text-align: center; height: fit-content"
+  >
+    <select
+      name="movie"
+      id="movie"
+      class="chosen"
+      data-live-search="true"
+      style="width: 30%; margin-left: 0%"
+    >
+      <option>--Select a movie from list--</option>
+      {% for i in movies %}
+      <option>{{i}}</option>
+      {% endfor %}
+    </select>
+    <br /><br />
+    <input
+      type="submit"
+      name="submit"
+      class="btn btn-primary"
+      value="GO"
+      style="margin-left: 0%"
+    />
+  </form>
+  {% if path %}
+  <div
+    class="container my-2"
+    style="
+      position: relative;
+      width: 100%;
+      margin: auto;
+      height: fit-content;
+      text-align: center;
+    "
+  >
+    <h1
+      class="my-5"
+      style="text-align: center; color: rgb(0, 4, 7); margin: auto; padding: 0%"
+    >
+      Recommended movies are :
+    </h1>
+    <div
+      id="carouselExampleInterval"
+      class="carousel slide"
+      data-bs-ride="carousel"
+      style="
+        margin-left: 0%;
+        width: 100%;
+        position: relative;
+        text-align: center;
+      "
+    >
+      
+      <div class="carousel-inner">
+
+        <!-- 
+            <div class="carousel-inner"> -->
+        // inner
+
+        <div
+          class="carousel-item active"
+          data-bs-interval="5000"
+          style="
+            width: 100%;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+          "
+        >
+          <!-- <div class="carousel-item active" style="width: 100%;
+              position: relative;
+              justify-content: center;
+              align-items: center;
+              text-align: center;"> -->
+          <div
+            class="row"
+            style="
+              margin-left: 0%;
+              width: auto;
+              height: auto;
+              position: relative;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            {% for i in range(0,3) %}
+            <div
+              class="card col-md-3 mx-1 my-1"
+              style="width: 25%; position: relative"
+            >
+              <img
+                src="{{path[i]}}"
+                class="card-img-top d-block w-100"
+                alt=""
+              />
+              <div class="card-body" style="width: fit-content; height: 180px">
+                <div class="container" style="text-align: center">
+                  <h5
+                    class="card-title"
+                    style="
+                      color: rgb(8, 8, 8);
+                      font-size: large;
+                      text-align: center;
+                    "
+                  >
+                    <strong>{{movies.iloc[indexes[i]]}}</strong>
+                  </h5>
+                </div>
+                <p
+                  class="card-text my-4"
+                  style="
+                    color: rgb(10, 10, 10);
+                    font-size: medium;
+                    text-align: left;
+                  "
+                >
+                  <strong>Tag : </strong>{{tag[i]}}<br /><strong
+                    >Rating : </strong
+                  >{{rating[i]}}
+                </p>
+                <!-- <a href="https://api.themoviedb.org/3/movie/{{indexes[i]}}?api_key=3136368ff79fd8b05a0b46aa15630807&language=en-US" class="btn btn-primary mb-1" >More</a> -->
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div
+          class="carousel-item"
+          data-bs-interval="5000"
+          style="
+            width: 100%;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+          "
+        >
+          <div
+            class="row"
+            style="
+              margin-left: 0%;
+              width: auto;
+              height: auto;
+              position: relative;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            {% for i in range(3,6) %}
+            <div
+              class="card col-md-3 mx-1 my-1"
+              style="width: 25%; position: relative"
+            >
+              <img src="{{path[i]}}" class="card-img-top" alt="" />
+              <div class="card-body" style="width: fit-content; height: 180px">
+                <div class="container">
+                  <h5
+                    class="card-title"
+                    style="
+                      color: rgb(5, 5, 5);
+                      font-size: large;
+                      text-align: center;
+                    "
+                  >
+                    <strong>{{movies.iloc[indexes[i]]}}</strong>
+                  </h5>
+                </div>
+                <p
+                  class="card-text my-4"
+                  style="
+                    color: rgb(2, 2, 2);
+                    font-size: medium;
+                    text-align: left;
+                  "
+                >
+                  <strong>Tag : </strong>{{tag[i]}}<br /><strong
+                    >Rating : </strong
+                  >{{rating[i]}}
+                </p>
+                <!-- <a href="https://api.themoviedb.org/3/movie/{{indexes[i]}}?api_key=3136368ff79fd8b05a0b46aa15630807&language=en-US" class="btn btn-primary mb-1" >More</a> -->
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div
+          class="carousel-item"
+          style="
+            width: 100%;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+          "
+        >
+          <div
+            class="row"
+            style="
+              margin-left: 0%;
+              width: auto;
+              height: auto;
+              position: relative;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            {% for i in range(6,9) %}
+            <div
+              class="card col-md-3 mx-1 my-1"
+              style="width: 25%; position: relative"
+            >
+              <img
+                src="{{path[i]}}"
+                class="card-img-top d-block w-100"
+                alt=""
+              />
+              <div class="card-body" style="width: fit-content; height: 180px">
+                <div class="container">
+                  <h5
+                    class="card-title"
+                    style="
+                      color: rgb(7, 7, 7);
+                      font-size: large;
+                      text-align: center;
+                    "
+                  >
+                    <strong>{{movies.iloc[indexes[i]]}}</strong>
+                  </h5>
+                </div>
+                <p
+                  class="card-text my-4"
+                  style="
+                    color: rgb(7, 7, 7);
+                    font-size: medium;
+                    text-align: left;
+                  "
+                >
+                  <strong>Tag : </strong>{{tag[i]}}<br /><strong
+                    >Rating : </strong
+                  >{{rating[i]}}
+                </p>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        // inner
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleInterval"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleInterval"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  {% else %}
+
+  <div
+    id="carouselExampleIndicators"
+    class="carousel slide"
+    data-bs-ride="true"
+    style="margin-left: 0%; width: 100%; position: relative; text-align: center"
+  >
+    <div class="carousel-inner">
+      <div
+        class="carousel-item active"
+        style="
+          width: 100%;
+          position: relative;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        "
+      >
+        <div
+          class="row"
+          style="
+            margin-left: 0%;
+            width: auto;
+            /* 100%  */
+            height: auto;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          {% for i in range(0,3) %}
+          <div
+            class="card col-md-3 mx-1 my-1"
+            style="width: 25%; position: relative"
+          >
+            <img src="{{poster_before[i]}}" class="card-img-top" alt="" />
+            <div class="card-body" style="width: fit-content; height: 180px">
+              <div class="container" style="text-align: center">
+                <h5
+                  class="card-title"
+                  style="
+                    color: rgb(8, 8, 8);
+                    font-size: large;
+                    text-align: center;
+                  "
+                >
+                  <strong>{{movies.iloc[index_before[i]]}}</strong>
+                </h5>
+              </div>
+              <p
+                class="card-text my-4"
+                style="
+                  color: rgb(10, 10, 10);
+                  font-size: medium;
+                  text-align: left;
+                "
+              >
+                <strong>Tag : </strong>{{tag_before[i]}}<br /><strong
+                  >Rating : </strong
+                >{{rating_before[i]}}
+              </p>
+              <!-- <a href="https://api.themoviedb.org/3/movie/{{indexes[i]}}?api_key=3136368ff79fd8b05a0b46aa15630807&language=en-US" class="btn btn-primary mb-1" >More</a> -->
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div
+          class="row"
+          style="
+            margin-left: 0%;
+            width: auto;
+            height: auto;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          {% for i in range(3,6) %}
+          <div
+            class="card col-md-3 mx-1 my-1"
+            style="width: 25%; position: relative"
+          >
+            <img src="{{poster_before[i]}}" class="card-img-top" alt="" />
+            <div class="card-body" style="width: fit-content; height: 180px">
+              <div class="container">
+                <h5
+                  class="card-title"
+                  style="
+                    color: rgb(5, 5, 5);
+                    font-size: large;
+                    text-align: center;
+                  "
+                >
+                  <strong>{{movies.iloc[index_before[i]]}}</strong>
+                </h5>
+              </div>
+              <p
+                class="card-text my-4"
+                style="color: rgb(2, 2, 2); font-size: medium; text-align: left"
+              >
+                <strong>Tag : </strong>{{tag_before[i]}}<br /><strong
+                  >Rating : </strong
+                >{{rating_before[i]}}
+              </p>
+              <!-- <a href="https://api.themoviedb.org/3/movie/{{indexes[i]}}?api_key=3136368ff79fd8b05a0b46aa15630807&language=en-US" class="btn btn-primary mb-1" >More</a> -->
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div
+          class="row"
+          style="
+            margin-left: 0%;
+            width: auto;
+            height: auto;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          {% for i in range(6,9) %}
+          <div
+            class="card col-md-3 mx-1 my-1"
+            style="width: 25%; position: relative"
+          >
+            <img src="{{poster_before[i]}}" class="card-img-top" alt="" />
+            <div class="card-body" style="width: fit-content; height: 180px">
+              <div class="container">
+                <h5
+                  class="card-title"
+                  style="
+                    color: rgb(7, 7, 7);
+                    font-size: large;
+                    text-align: center;
+                  "
+                >
+                  <strong>{{movies.iloc[index_before[i]]}}</strong>
+                </h5>
+              </div>
+              <p
+                class="card-text my-4"
+                style="color: rgb(7, 7, 7); font-size: medium; text-align: left"
+              >
+                <strong>Tag : </strong>{{tag_before[i]}}<br /><strong
+                  >Rating : </strong
+                >{{rating_before[i]}}
+              </p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      // inner
+    </div>
+
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="prev"
+      style="width: 7%; margin-left: 0%"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="next"
+      style="width: 7%; margin-right: -2%"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  {% endif %}
+</div>
+<!-- </div> -->
+
+{% endblock %}

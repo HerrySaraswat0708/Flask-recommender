@@ -1,0 +1,6 @@
+flask
+joblib
+requests
+FontAwesome
+math
+random
