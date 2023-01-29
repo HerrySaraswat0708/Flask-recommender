@@ -2,10 +2,10 @@ FROM python:3
 
 WORKDIR /usr/src/app
 
-COPY server/src/requirements.txt ./
+COPY . ./usr/src/app
 
 RUN pip install -r requirements.txt
 
-COPY . .|
+COPY . .
 
 CMD [ "python", "./app.py" ]PORT --workers 1 --threads 8 & app:app
