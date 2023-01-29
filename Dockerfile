@@ -1,11 +1,11 @@
-FROM python:3
+FROM python:3-alpine#.15
 
 WORKDIR /usr/src/app
 
-COPY . ./usr/src/app
+COPY . /usr/src/app
 
 RUN pip install -r requirements.txt
 
-COPY . .
+EXPOSE 8000
 
-CMD [ "python", "./app.py" ]PORT --workers 1 --threads 8 & app:app
+CMD python ./app.py PORT --workers 1 --threads 8 & app:app
