@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY server/src/requirements.txt ./
 
-RUN pip install -t -r requirements.txt
+RUN pip install -r requirements.txt
 
 COPY . .|
 
